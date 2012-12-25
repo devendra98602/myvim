@@ -5,6 +5,7 @@ filetype indent on
 filetype plugin on
 call pathogen#infect()
 
+syntax enable
 let mapleader = ","
 colorscheme xoria256
 
@@ -14,12 +15,17 @@ set ignorecase "ignore case while searching
 set hlsearch "highlights all matched results
 set smartcase "will perform case insensitive search until it encounters a capital letter
 
+" Disable highlighting after search. Too distracting.
+set nohlsearch
+
 "Indentation
 set tabstop=4 
 set softtabstop=4
 set shiftwidth=4
 set expandtab	
 set autoindent 
+
+set wildmenu 
 
 "improving backspace and delete
 set backspace=indent,eol,start
@@ -28,7 +34,6 @@ set backspace=indent,eol,start
 "improving readibility
 set number
 set showmatch "highlights ( { [ etc
-syntax enable
 
 set autochdir   " makes the current directory as pwd
 set autoread	" if files is changed locally load it immediately
