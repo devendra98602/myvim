@@ -49,6 +49,9 @@ autocmd VimEnter * wincmd p
 set listchars=tab:▸\ ,eol:¬
 set cursorline
 
+"Buffers setting
+set hidden "this will suppress errors incase i switch to next buffer without saving current one
+
 "nmap <leader>l :set list!<CR> "mapping to toggle displaying  special characters
 
 "Bubbling part of code up and down using timpope unimpaired plugin
