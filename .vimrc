@@ -6,7 +6,7 @@ filetype plugin on
 call pathogen#infect()
 
 let mapleader = ","
-colorscheme desert
+colorscheme xoria256
 
 "Search customization
 set incsearch  "shows results as you search
@@ -50,3 +50,12 @@ set listchars=tab:▸\ ,eol:¬
 set cursorline
 
 "nmap <leader>l :set list!<CR> "mapping to toggle displaying  special characters
+
+"Bubbling part of code up and down using timpope unimpaired plugin
+"Moving single line of code up and down in normal mode
+nmap <C-k> [e
+nmap <C-j> ]e
+"Moving multiple selected lines up and down
+vmap <C-k> [egv
+vmap <C-j> ]egv
+
