@@ -5,7 +5,6 @@ filetype indent on
 filetype plugin on
 call pathogen#infect()
 
-syntax enable
 let mapleader = ","
 colorscheme xoria256
 
@@ -14,7 +13,7 @@ set incsearch  "shows results as you search
 set ignorecase "ignore case while searching
 set hlsearch "highlights all matched results
 set smartcase "will perform case insensitive search until it encounters a capital letter
-
+set wrapscan
 " Disable highlighting after search. Too distracting.
 set nohlsearch
 
@@ -34,6 +33,7 @@ set backspace=indent,eol,start
 "improving readibility
 set number
 set showmatch "highlights ( { [ etc
+syntax enable
 
 set autochdir   " makes the current directory as pwd
 set autoread	" if files is changed locally load it immediately
@@ -56,7 +56,6 @@ set cursorline
 
 "Buffers setting
 set hidden "this will suppress errors incase i switch to next buffer without saving current one
-
 "nmap <leader>l :set list!<CR> "mapping to toggle displaying  special characters
 
 "Bubbling part of code up and down using timpope unimpaired plugin
@@ -66,4 +65,6 @@ nmap <C-j> ]e
 "Moving multiple selected lines up and down
 vmap <C-k> [egv
 vmap <C-j> ]egv
+
+"moving between tabs
 
