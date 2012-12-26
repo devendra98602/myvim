@@ -54,7 +54,7 @@ autocmd VimEnter * wincmd p
 
 "set list "will show special characters as tab and enter
 
-"to enter unicode character go in insert mode press ctrl-v and type the unicode character
+"to enter Unicode character go in insert mode press ctrl-v and type the unicode character
 "ctrl-v u00ac represents ¬
 "ctrl-v u25b8 represents ▸
 set listchars=tab:▸\ ,trail:·,extends:#,nbsp:·
@@ -63,7 +63,9 @@ set cursorline
 
 "Buffers setting
 set hidden "this will suppress errors incase i switch to next buffer without saving current one
-"nmap <leader>l :set list!<CR> "mapping to toggle displaying  special characters
+nmap <leader>l :set list!<CR> "mapping to toggle displaying  special characters
+nmap <leader>l :set list!<CR>
+nmap <silent> <leader>s :set spell!<CR>
 
 "Bubbling part of code up and down using timpope unimpaired plugin
 "Moving single line of code up and down in normal mode
