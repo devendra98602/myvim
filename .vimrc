@@ -6,6 +6,9 @@ filetype plugin on
 call pathogen#infect()
 
 let mapleader = ","
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+
 colorscheme xoria256
 
 "Search customization
@@ -15,6 +18,7 @@ set hlsearch "highlights all matched results
 set smartcase "will perform case insensitive search until it encounters a capital letter
 set wrapscan
 " Disable highlighting after search. Too distracting.
+set lazyredraw                  " don't update the display while executing macros
 set nohlsearch
 
 "Indentation
@@ -25,13 +29,15 @@ set expandtab
 set autoindent 
 
 set wildmenu 
-
+set history=1000                " remember more commands and search history
+set undolevels=1000             " use many muchos levels of undo
 "improving backspace and delete
 set backspace=indent,eol,start
 
 
 "improving readibility
 set number
+set gcr=a:blinkon0              "Disable cursor blink
 set showmatch "highlights ( { [ etc
 syntax enable
 
@@ -51,7 +57,8 @@ autocmd VimEnter * wincmd p
 "to enter unicode character go in insert mode press ctrl-v and type the unicode character
 "ctrl-v u00ac represents ¬
 "ctrl-v u25b8 represents ▸
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,trail:·,extends:#,nbsp:·
+set listchars=eol:¬
 set cursorline
 
 "Buffers setting
