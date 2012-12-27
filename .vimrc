@@ -6,9 +6,6 @@ filetype plugin on
 call pathogen#infect()
 
 let mapleader = ","
-" Shortcut to rapidly toggle `set list`
-nmap <leader>l :set list!<CR>
-
 colorscheme xoria256
 
 "Search customization
@@ -19,7 +16,6 @@ set smartcase "will perform case insensitive search until it encounters a capita
 set wrapscan
 " Disable highlighting after search. Too distracting.
 set lazyredraw                  " don't update the display while executing macros
-set nohlsearch
 
 "Indentation
 set tabstop=4 
@@ -63,8 +59,8 @@ set cursorline
 
 "Buffers setting
 set hidden "this will suppress errors incase i switch to next buffer without saving current one
+nmap <silent> ,n :nohls<CR>" Turn off that stupid highlight search
 nmap <leader>l :set list!<CR> "mapping to toggle displaying  special characters
-nmap <leader>l :set list!<CR>
 nmap <silent> <leader>s :set spell!<CR>
 
 "Bubbling part of code up and down using timpope unimpaired plugin
