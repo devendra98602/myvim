@@ -29,7 +29,14 @@ set history=1000                " remember more commands and search history
 set undolevels=1000             " use many muchos levels of undo
 "improving backspace and delete
 set backspace=indent,eol,start
-
+"this will make cursor line to be visible only on current line
+augroup CursorLine
+    au!
+    au VimEnter * setlocal cursorline
+    au WinEnter * setlocal cursorline
+    au BufWinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
+augroup END
 
 "improving readibility
 set number
@@ -48,6 +55,8 @@ autocmd VimEnter * wincmd p
 "set winminheight=15
 "set winheight=999 "to max
 
+set scrolloff=2 "this keeps cursor 2 line below or top as we move 
+
 "set list "will show special characters as tab and enter
 
 "to enter Unicode character go in insert mode press ctrl-v and type the unicode character
@@ -62,7 +71,9 @@ set hidden "this will suppress errors incase i switch to next buffer without sav
 nmap <silent> ,n :nohls<CR>" Turn off that stupid highlight search
 nmap <leader>l :set list!<CR> "mapping to toggle displaying  special characters
 nmap <silent> <leader>s :set spell!<CR>
-
+"to save file in insert mode and switch to command
+inoremap <C-s> <esc>:w<CR> 
+nnoremap <leader>be :BufExplorer<CR>
 "Bubbling part of code up and down using timpope unimpaired plugin
 "Moving single line of code up and down in normal mode
 nmap <C-k> [e
@@ -70,7 +81,32 @@ nmap <C-j> ]e
 "Moving multiple selected lines up and down
 vmap <C-k> [egv
 vmap <C-j> ]egv
+" Visual mode pressing * or # searches for the current selection
+" Super useful! From an idea by Michael Naumann
+vnoremap <silent> * :call VisualSelection('f')<CR>
+vnoremap <silent> # :call VisualSelection('b')<CR>
 
+
+function! VisualSelection(direction) range
+    let l:saved_reg = @"
+    execute "normal! vgvy"
+
+    let l:pattern = escape(@", '\\/.*$^~[]')
+    let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+    if a:direction == 'b'
+        execute "normal ?" . l:pattern . "^M"
+    elseif a:direction == 'gv'
+        call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
+    elseif a:direction == 'replace'
+        call CmdLine("%s" . '/'. l:pattern . '/')
+    elseif a:direction == 'f'
+        execute "normal /" . l:pattern . "^M"
+    endif
+
+    let @/ = l:pattern
+    let @" = l:saved_reg
+endfunction
 "moving between tabs
 
 "-----------------------------------------------------------------------------
@@ -114,4 +150,5 @@ iab taht that
 iab Teh The
 iab teh the
 iab fasle false
-
+iab thsi this
+iab yuor your
