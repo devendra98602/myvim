@@ -23,6 +23,7 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab	
 set autoindent 
+set smartindent 
 
 set wildmenu 
 set history=1000                " remember more commands and search history
@@ -43,7 +44,9 @@ set number
 set gcr=a:blinkon0              "Disable cursor blink
 set showmatch "highlights ( { [ etc
 syntax enable
-
+" Treat long lines as break lines (useful when moving around in them)
+map j gj
+map k gk
 set autochdir   " makes the current directory as pwd
 set autoread	" if files is changed locally load it immediately
 autocmd VimEnter * NERDTree
@@ -107,6 +110,14 @@ function! VisualSelection(direction) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
+
+" Edit the vimrc file
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" Add ignorance of whitespace to diff
+set diffopt+=iwhite
+
 "moving between tabs
 
 "-----------------------------------------------------------------------------
