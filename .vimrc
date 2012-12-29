@@ -50,6 +50,9 @@ set smartindent
 "in command line when tab is pressed show all matching commands
 set wildmenu 
 
+" Do not require exact case for completion 
+set wildignorecase  
+
 " remember more commands and search history 
 set history=1000                
 
@@ -111,6 +114,9 @@ augroup END
 "this will suppress errors incase i switch to next buffer without saving current one 
 set hidden 
 
+"show auto-complete menu even for single match
+set completeopt=menu,menuone
+                    
 "my custom mappings 
 
 " Treat long lines as break lines (useful when moving around in them)
@@ -130,7 +136,15 @@ nnoremap <silent> <leader>s :set spell!<CR>
 "to save file in insert mode and switch to command
 inoremap <C-s> <esc>:w<CR> 
 
-nnoremap <leader>be :BufExplorer<CR>
+nnoremap <leader>b :BufExplorer<CR>
+
+nnoremap <leader>f :CtrlP<CR>
+
+nnoremap <leader>t :NERDTreeToggle<CR>
+
+nnoremap <tab> <C-w>w
+
+nnoremap <S-tab> :tabnext<CR>
 
 " Edit the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -148,6 +162,15 @@ nmap <M-j> ]e
 vmap <M-k> [egv
 vmap <M-j> ]egv
 
+" disable arrow keys
+   map <up> <nop>
+   map <down> <nop>
+   map <left> <nop>
+   map <right> <nop>
+   imap <up> <nop>
+   imap <down> <nop>
+   imap <left> <nop>
+   imap <right> <nop>
 "----------------------------------------------------------------
 
 " Visual mode pressing * or # searches for the current selection
