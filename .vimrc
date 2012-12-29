@@ -3,6 +3,10 @@ set nocompatible
 
 "loads all my plugins from bundle folder
 call pathogen#infect()
+
+"generate documentation from installed plugins
+call pathogen#helptags()
+
 filetype on
 filetype indent on
 filetype plugin on
@@ -65,6 +69,11 @@ set backspace=indent,eol,start
 "show line number
 set number
 
+"show the cursor position in status bar
+set ruler
+
+"always show status bar
+set laststatus=2
 
  "highlights ( { [ etc 
 set showmatch 
@@ -122,6 +131,10 @@ set completeopt=menu,menuone
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
+
+"indent code with visual mode intact
+vmap > >gv
+vmap < <gv
 
 "set leader key as single quote
 let mapleader=','
