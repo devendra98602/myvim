@@ -1,9 +1,8 @@
 set nocompatible "all options avialable in vim and vi at same time  will use vim mode. because certain commands are same in vi and vim , but vim way is better
-
+call pathogen#infect()
 filetype on
 filetype indent on
 filetype plugin on
-call pathogen#infect()
 
 let mapleader = ","
 colorscheme xoria256
@@ -16,7 +15,8 @@ set smartcase "will perform case insensitive search until it encounters a capita
 set wrapscan
 " Disable highlighting after search. Too distracting.
 set lazyredraw                  " don't update the display while executing macros
-
+"it will set virtual edit allowing u to move around invalid places 
+set virtualedit=all 
 "Indentation
 set tabstop=4 
 set softtabstop=4
@@ -30,14 +30,6 @@ set history=1000                " remember more commands and search history
 set undolevels=1000             " use many muchos levels of undo
 "improving backspace and delete
 set backspace=indent,eol,start
-"this will make cursor line to be visible only on current line
-augroup CursorLine
-    au!
-    au VimEnter * setlocal cursorline
-    au WinEnter * setlocal cursorline
-    au BufWinEnter * setlocal cursorline
-    au WinLeave * setlocal nocursorline
-augroup END
 
 "improving readibility
 set number
@@ -69,6 +61,14 @@ set listchars=tab:▸\ ,trail:·,extends:#,nbsp:·
 set listchars=eol:¬
 set cursorline
 
+"this will make cursor line to be visible only on current line
+augroup CursorLine
+    au!
+    au VimEnter * setlocal cursorline
+    au WinEnter * setlocal cursorline
+    au BufWinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
+augroup END
 "Buffers setting
 set hidden "this will suppress errors incase i switch to next buffer without saving current one
 nmap <silent> ,n :nohls<CR>" Turn off that stupid highlight search
@@ -163,3 +163,4 @@ iab teh the
 iab fasle false
 iab thsi this
 iab yuor your
+iab begining beginning
