@@ -126,11 +126,16 @@ set hidden
 "show auto-complete menu even for single match
 set completeopt=menu,menuone
                     
+"this will set command height to 2
+set ch=2
+
 "my custom mappings 
 
-" Treat long lines as break lines (useful when moving around in them)
-map j gj
-map k gk
+" http://vim.wikia.com/wiki/Move_cursor_by_display_lines_when_wrapping
+nnoremap <silent> j gj
+nnoremap <silent> k gk
+vnoremap <silent> j gj
+vnoremap <silent> k gk
 
 "indent code with visual mode intact
 vmap > >gv
@@ -160,8 +165,20 @@ nnoremap <tab> <C-w>w
 nnoremap <S-tab> :tabnext<CR>
 
 " Edit the vimrc file
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>ev :vert split $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" use - and + to resize horizontal splits
+noremap <M-s>  <C-W>-
+noremap <M-w>  <C-W>+
+
+" and for vsplits with alt-< or alt->
+noremap <M-a> <C-W>>
+noremap <M-d> <C-W><
+
+"use M-q instead of esc to go to command mode
+inoremap <M-q> <esc>
+noremap <M-q> <esc>
 
 "----------------------------------------------------------------
 "Bubbling part of code up and down using timpope unimpaired plugin
@@ -213,7 +230,25 @@ function! VisualSelection(direction) range
     let @" = l:saved_reg
 endfunction
 
+" Syntastic 
+    
+   " On by default, turn it off for html
+let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': [],'passive_filetypes': ['html'] }
+    
+let g:syntastic_auto_loc_list=1
+" To enable this plugin, edit the .vimrc like this:
+let g:syntastic_javascript_checker = "closurecompiler" 
+" and set the path to the Google Closure Compiler:
+   let g:syntastic_javascript_closure_compiler_path = '~/.vim/closure-compier/compiler.jar'
 
+" Better :sign interface symbols
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '!'
+ let g:syntastic_enable_signs=1
+ "let g:syntastic_echo_current_error=1
+ let g:syntastic_auto_loc_list=1
+" Check on buffer open
+let g:syntastic_check_on_open = 1
 
 "-----------------------------------------------------------------------------
 " Fix constant spelling mistakes
