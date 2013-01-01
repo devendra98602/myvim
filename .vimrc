@@ -69,6 +69,16 @@ set backspace=indent,eol,start
 "show line number
 set number
 
+"treats numbers as decimal when incremeting and decrementing using <C-a> and
+"<C-x>
+set nrformats=
+
+"splitting a window will put the new window below current one
+set splitbelow
+
+"splitting will cause new window to right of current one
+set splitright
+
 "show the cursor position in status bar
 set ruler
 
@@ -77,6 +87,26 @@ set laststatus=2
 
  "highlights ( { [ etc 
 set showmatch 
+
+ " Set the status line the way i like it
+"set stl=%f\ %m\ %r%{fugitive#statusline()}\ Line:%l/%L[%p%%]\ Col:%v\ Buf:#%n\ [%b][0x%B]
+" Status line
+set laststatus=2
+set statusline=
+set statusline+=%-3.3n\                         " buffer number
+set statusline+=%f\                             " filename
+set statusline+=%h%m%r%w                        " status flags
+if isdirectory(expand("~/.vim/bundle/vim-fugitive", ":p"))
+    set statusline+=%{fugitive#statusline()}        " git status
+endif
+if isdirectory(expand("~/.vim/bundle/syntastic", ":p"))
+    set statusline+=%{SyntasticStatuslineFlag()}    " syntastic status - makes sense with :Errors
+endif
+set statusline+=\[%{strlen(&ft)?&ft:'none'}]    " file type
+set statusline+=%=                              " right align remainder
+set statusline+=0x%-8B                          " character value
+set statusline+=%-14(%l,%c%V%)                  " line, character
+set statusline+=%<%P                            " file position
 
 
  " makes the current directory as pwd 
@@ -249,6 +279,32 @@ let g:syntastic_warning_symbol = '!'
  let g:syntastic_auto_loc_list=1
 " Check on buffer open
 let g:syntastic_check_on_open = 1
+
+"Tagbar
+  nnoremap <silent> <leader>tt :TagbarToggle<CR>
+
+" Tabularize
+
+if exists(":Tabularize")
+  nmap <leader>a= :Tabularize /=<cr>
+  vmap <leader>a= :Tabularize /=<cr>
+  nmap <leader>a: :Tabularize /:\zs<cr>
+  vmap <leader>a: :Tabularize /:\zs<cr>
+endif
+
+
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+ 
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
+endfunction
 
 "-----------------------------------------------------------------------------
 " Fix constant spelling mistakes
