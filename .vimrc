@@ -109,6 +109,21 @@ set statusline+=%-14(%l,%c%V%)                  " line, character
 set statusline+=%<%P                            " file position
 
 
+" Resize splits when the window is resized
+au VimResized * :wincmd =
+
+
+" Make sure Vim returns to the same line when you reopen a file.
+" Thanks, Amit
+augroup line_return
+    au!
+    au BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \ execute 'normal! g`"zvzz' |
+        \ endif
+augroup END
+
+
  " makes the current directory as pwd 
 set autochdir   
 
@@ -269,7 +284,7 @@ let g:syntastic_auto_loc_list=1
 " To enable this plugin, edit the .vimrc like this:
 let g:syntastic_javascript_checker = "closurecompiler" 
 " and set the path to the Google Closure Compiler:
-   let g:syntastic_javascript_closure_compiler_path = '~/.vim/closure-compier/compiler.jar'
+   let g:syntastic_javascript_closure_compiler_path = '~/.vim/closure-compiler/compiler.jar'
 
 " Better :sign interface symbols
 let g:syntastic_error_symbol = '✗'
