@@ -38,7 +38,6 @@ function! SyntaxCheckers_javascript_GetLocList()
     endif
 
     let makeprg = 'java -jar ' . g:syntastic_javascript_closure_compiler_path . ' ' . g:syntastic_javascript_closure_compiler_options . ' --js ' . file_list
-    echom makeprg 
     let errorformat = '%-GOK,%E%f:%l: ERROR - %m,%Z%p^,%W%f:%l: WARNING - %m,%Z%p^'
     return SyntasticMake({ 'makeprg': makeprg, 'errorformat': errorformat })
 endfunction
