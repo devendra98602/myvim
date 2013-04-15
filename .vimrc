@@ -280,6 +280,7 @@ function! VisualSelection(direction) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
+
 "Zencoding .vim
  let g:user_zen_leader_key = '<c-e>'
 
