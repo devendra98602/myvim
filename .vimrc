@@ -215,10 +215,6 @@ nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <leader>h :TagbarToggle<CR>
 nnoremap <leader>g :GundoToggle<CR>
 
-nnoremap <tab> <C-w>w
-
-nnoremap <S-tab> :tabnext<CR>
-
 " Edit the vimrc file
 nmap <silent> <leader>ev :vert split $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
@@ -284,6 +280,9 @@ function! VisualSelection(direction) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
+"Zencoding .vim
+ let g:user_zen_leader_key = '<c-e>'
+
 "Snipmate
 
 let g:snipMate = {}
