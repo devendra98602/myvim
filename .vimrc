@@ -6,7 +6,6 @@ call pathogen#infect()
 
 "generate documentation from installed plugins
 call pathogen#helptags()
-
 filetype on
 filetype indent on
 filetype plugin on
@@ -55,7 +54,7 @@ set virtualedit=all
 set tabstop=4 
 set softtabstop=4
 set shiftwidth=4
-set expandtab	
+set noexpandtab	
 set autoindent 
 set smartindent 
 
@@ -214,7 +213,7 @@ nnoremap <leader>f :CtrlP<CR>
 nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <leader>h :TagbarToggle<CR>
 nnoremap <leader>g :GundoToggle<CR>
-
+nnoremap <leader>y :YRShow<CR>
 " Edit the vimrc file
 nmap <silent> <leader>ev :vert split $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
